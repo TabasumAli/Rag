@@ -211,14 +211,15 @@ if st.button("Submit"):
     st.write("Prediction Result: ", prediction)
 
     # Step 6: Provide suggestions if prediction is "Yes"
-    if prediction.lower() == "yes":
-        st.warning("The model predicts a high likelihood of lung cancer. Please consider the following steps:")
-        st.markdown("""
-        - **Consult a Medical Professional:** Schedule an appointment with a pulmonologist or oncologist for further evaluation.
-        - **Diagnostic Tests:** Discuss undergoing diagnostic tests such as a chest X-ray, CT scan, or biopsy to confirm the diagnosis.
-        - **Lifestyle Changes:** If you smoke, consider quitting immediately. Seek support through cessation programs or therapy.
-        - **Healthy Diet and Exercise:** Adopt a healthier lifestyle to boost your immune system and overall health.
-        - **Follow-Up:** Regularly follow up with your healthcare provider to monitor your condition.
-        """)
-    else:
-        st.success("The model predicts no significant likelihood of lung cancer. However, maintain a healthy lifestyle and regular checkups!")
+if prediction.lower() == "yes":
+    st.warning("The model predicts a high likelihood of lung cancer. Please consider the following steps:")
+    st.markdown("""
+    - **Consult a Medical Professional:** Schedule an appointment with a pulmonologist or oncologist for further evaluation.
+    - **Diagnostic Tests:** Discuss undergoing diagnostic tests such as a chest X-ray, CT scan, or biopsy to confirm the diagnosis.
+    - **Lifestyle Changes:** If you smoke, consider quitting immediately. Seek support through cessation programs or therapy.
+    - **Healthy Diet and Exercise:** Adopt a healthier lifestyle to boost your immune system and overall health.
+    - **Follow-Up:** Regularly follow up with your healthcare provider to monitor your condition.
+    """)
+else:
+    st.success("The model predicts no significant likelihood of lung cancer. However, maintain a healthy lifestyle and regular checkups!")
+
