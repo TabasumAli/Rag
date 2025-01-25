@@ -6,7 +6,7 @@ from sklearn.metrics.pairwise import cosine_similarity
 from groq import Groq
 
 # Initialize Groq API client with your API key
-secrets  = st.secrets["groq_api_key"]
+secrets  = st.secrets["GROQ_API_KEY"]
 client = Groq(api_key=secrets)
 
 # Load the dataset
