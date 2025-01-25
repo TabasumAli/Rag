@@ -197,6 +197,7 @@ user_input = f"{gender} {age} {smoking} {yellow_fingers} {anxiety} {peer_pressur
 
 # Button to submit and process prediction
 # Button to submit and process prediction
+# Button to submit and process prediction
 if st.button("Submit"):
     # Step 4: Retrieve the most relevant data row based on user input
     relevant_data = retrieve_data(user_input)
@@ -208,11 +209,15 @@ if st.button("Submit"):
     # Step 5: Get prediction based on the retrieved data
     prediction = get_prediction_from_groq(relevant_data)
 
+    # Display the prediction for debugging
+    st.write(f"Prediction (raw): '{prediction}'")  # Debugging line to see exact output
+
     # Show the prediction result
     st.write("Prediction Result: ", prediction)
 
-    # Step 6: Provide suggestions if prediction is "Yes"
-    if prediction.strip().lower() == "yes":  # Check for "yes" and ensure it works regardless of case
+    # Step 6: Provide solutions if prediction is "Yes"
+    # Ensure we check for "Yes" regardless of extra spaces or different cases
+    if prediction.strip().lower() == "yes":  # This should work even if there are spaces or case issues
         st.warning("The model predicts a high likelihood of lung cancer. Please consider the following steps:")
         st.markdown("""
         - **Consult a Medical Professional:** Schedule an appointment with a pulmonologist or oncologist for further evaluation.
@@ -223,5 +228,6 @@ if st.button("Submit"):
         """)
     else:
         st.success("The model predicts no significant likelihood of lung cancer. However, maintain a healthy lifestyle and regular checkups!")
+
 
 
