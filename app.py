@@ -196,8 +196,6 @@ chest_pain = st.selectbox("Chest Pain", ["Yes", "No"])
 user_input = f"{gender} {age} {smoking} {yellow_fingers} {anxiety} {peer_pressure} {chronic_disease} {fatigue} {allergy} {wheezing} {alcohol_consuming} {coughing} {shortness_of_breath} {swallowing_difficulty} {chest_pain}"
 
 # Button to submit and process prediction
-# Button to submit and process prediction
-# Button to submit and process prediction
 if st.button("Submit"):
     # Step 4: Retrieve the most relevant data row based on user input
     relevant_data = retrieve_data(user_input)
@@ -209,25 +207,51 @@ if st.button("Submit"):
     # Step 5: Get prediction based on the retrieved data
     prediction = get_prediction_from_groq(relevant_data)
 
-    # Display the prediction for debugging
+    # Display the prediction result
     st.write(f"Prediction (raw): '{prediction}'")  # Debugging line to see exact output
-
-    # Show the prediction result
     st.write("Prediction Result: ", prediction)
 
-    # Step 6: Provide solutions if prediction is "Yes"
-    # Ensure we check for "Yes" regardless of extra spaces or different cases
-    if prediction.strip().lower() == "yes":  # This should work even if there are spaces or case issues
-        st.warning("The model predicts a high likelihood of lung cancer. Please consider the following steps:")
+    # Step 6: Provide engaging, personalized solutions if prediction is "Yes"
+    if prediction.strip().lower() == "yes":
+        st.warning("The model predicts a high likelihood of lung cancer. It’s crucial to take swift action.")
+        
+        # Step-by-step action plan based on prediction
         st.markdown("""
-        - **Consult a Medical Professional:** Schedule an appointment with a pulmonologist or oncologist for further evaluation.
-        - **Diagnostic Tests:** Discuss undergoing diagnostic tests such as a chest X-ray, CT scan, or biopsy to confirm the diagnosis.
-        - **Lifestyle Changes:** If you smoke, consider quitting immediately. Seek support through cessation programs or therapy.
-        - **Healthy Diet and Exercise:** Adopt a healthier lifestyle to boost your immune system and overall health.
-        - **Follow-Up:** Regularly follow up with your healthcare provider to monitor your condition.
+        ### Next Steps:
+        1. **Consult a Specialist**: 
+            - Schedule an immediate appointment with an oncologist or pulmonologist.
+            - Share your symptoms and history for a more accurate diagnosis.
+        
+        2. **Diagnostic Imaging**:
+            - You may need to undergo a **chest X-ray** or **CT scan**. These are standard tests to check for signs of lung cancer.
+            - **Biopsy** may be required if imaging results are unclear.
+
+        3. **Explore Treatment Options**:
+            - Based on the test results, treatments may include **surgery, chemotherapy, radiation**, or a combination.
+            - A personalized treatment plan will be created based on the stage and type of cancer.
+
+        4. **Lifestyle Modifications**:
+            - **Quit Smoking**: If you're still smoking, quitting immediately will significantly improve your chances.
+            - Adopt a **healthy, balanced diet** and engage in **regular exercise** to help your body cope with treatment.
+
+        5. **Support Groups**:
+            - Find a **support group** to help you cope emotionally. Support systems can make a big difference in treatment outcomes.
         """)
+        
+        # Add a motivational touch
+        st.markdown("""
+        > *"Early detection and treatment are key to fighting lung cancer. Stay strong, stay hopeful, and take action today!"*
+        """)
+        
+        # Let the user know about a possible second opinion
+        st.info("""
+        If you feel uncertain about the diagnosis or treatment plan, don't hesitate to seek a **second opinion** from another healthcare professional. It’s always okay to ask for more information and options.
+        """)
+        
     else:
-        st.success("The model predicts no significant likelihood of lung cancer. However, maintain a healthy lifestyle and regular checkups!")
+        st.success("The model predicts no significant likelihood of lung cancer. Keep up with regular health checkups and maintain a healthy lifestyle!")
+
+
 
 
 
