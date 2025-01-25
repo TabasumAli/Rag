@@ -7,7 +7,7 @@ from groq import Groq
 
 # Initialize Groq API client with your API key
 secrets  = st.secrets["groq_api_key"]
-client = Groq(api_key=secrets )
+client = Groq(api_key=secrets)
 
 # Load the dataset
 dataset_path = 'dataseter.csv'  # Ensure the correct path
