@@ -196,6 +196,7 @@ chest_pain = st.selectbox("Chest Pain", ["Yes", "No"])
 user_input = f"{gender} {age} {smoking} {yellow_fingers} {anxiety} {peer_pressure} {chronic_disease} {fatigue} {allergy} {wheezing} {alcohol_consuming} {coughing} {shortness_of_breath} {swallowing_difficulty} {chest_pain}"
 
 # Button to submit and process prediction
+# Button to submit and process prediction
 if st.button("Submit"):
     # Step 4: Retrieve the most relevant data row based on user input
     relevant_data = retrieve_data(user_input)
@@ -207,15 +208,21 @@ if st.button("Submit"):
     # Step 5: Get prediction based on the retrieved data
     prediction = get_prediction_from_groq(relevant_data)
 
-    # Display the prediction result
-    st.write(f"Prediction (raw): '{prediction}'")  # Debugging line to see exact output
-    st.write("Prediction Result: ", prediction)
+    # Debugging: Print out the raw prediction value to see if it's what we expect
+    st.write(f"Raw Prediction Output: '{prediction}'")  # Debugging line to see exact output
 
-    # Step 6: Provide engaging, personalized solutions if prediction is "Yes"
-    if prediction.strip().lower() == "yes":
-        st.warning("The model predicts a high likelihood of lung cancer. It’s crucial to take swift action.")
+    # Clean prediction string (strip spaces, handle case sensitivity)
+    prediction_cleaned = prediction.strip().lower()
+
+    # Step 6: Display the prediction result
+    st.write("Prediction Result: ", prediction_cleaned.capitalize())
+
+    # Check if the prediction is "Yes" and show relevant solutions
+    if prediction_cleaned == "yes":
+        # If "Yes", give detailed, actionable solutions
+        st.warning("The model predicts a high likelihood of lung cancer. It's crucial to take swift action.")
         
-        # Step-by-step action plan based on prediction
+        # Provide a detailed, step-by-step action plan
         st.markdown("""
         ### Next Steps:
         1. **Consult a Specialist**: 
@@ -237,19 +244,21 @@ if st.button("Submit"):
         5. **Support Groups**:
             - Find a **support group** to help you cope emotionally. Support systems can make a big difference in treatment outcomes.
         """)
-        
-        # Add a motivational touch
+
+        # Motivational message
         st.markdown("""
         > *"Early detection and treatment are key to fighting lung cancer. Stay strong, stay hopeful, and take action today!"*
         """)
         
-        # Let the user know about a possible second opinion
+        # Info about second opinions
         st.info("""
         If you feel uncertain about the diagnosis or treatment plan, don't hesitate to seek a **second opinion** from another healthcare professional. It’s always okay to ask for more information and options.
         """)
-        
+
     else:
+        # If prediction is "No", give reassurance and advice
         st.success("The model predicts no significant likelihood of lung cancer. Keep up with regular health checkups and maintain a healthy lifestyle!")
+
 
 
 
