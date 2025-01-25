@@ -10,7 +10,7 @@ api_key = "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"
 client = Groq(api_key=api_key)
 
 # Load the dataset
-dataset_path = '/content/dataseter.csv'  # Ensure the correct path
+dataset_path = 'dataseter.csv'  # Ensure the correct path
 data = pd.read_csv(dataset_path)
 
 # Preprocess the data (convert categorical variables and all columns to string)
