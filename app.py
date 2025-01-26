@@ -71,7 +71,7 @@ def get_prediction_from_groq(data_row):
     return chat_completion.choices[0].message.content.strip()
 
 # Streamlit UI
-st.title("Lung Cancer Prediction Using RAG Model")
+st.title("Lung Cancer Prediction")
 
 # User inputs
 age = st.slider("Age", 18, 100, 50)
