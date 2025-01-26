@@ -100,7 +100,7 @@ if st.button("Submit"):
 
     # Display the relevant data (for user reference)
     st.write("Most Relevant Data Retrieved from Dataset:")
-    st.write(relevant_data)
+    # st.write(relevant_data)
 
     # Get prediction based on the retrieved data
     prediction = get_prediction_from_groq(relevant_data)
