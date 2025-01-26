@@ -99,14 +99,14 @@ if st.button("Submit"):
     relevant_data = retrieve_data(user_input)
 
     # Display the relevant data (for user reference)
-    st.write("Most Relevant Data Retrieved from Dataset:")
+    # st.write("Most Relevant Data Retrieved from Dataset:")
     # st.write(relevant_data)
 
     # Get prediction based on the retrieved data
     prediction = get_prediction_from_groq(relevant_data)
 
     # Debugging: Print out the raw prediction value to see if it's what we expect
-    st.write(f"Raw Prediction Output: '{prediction}'")  # Debugging line
+    # st.write(f"Raw Prediction Output: '{prediction}'")  # Debugging line
 
     # Clean prediction string (strip spaces, punctuation, handle case sensitivity)
     prediction_cleaned = prediction.strip().lower().translate(str.maketrans('', '', string.punctuation))
